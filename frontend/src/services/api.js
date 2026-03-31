@@ -20,11 +20,11 @@ apiClient.interceptors.request.use((config) => {
 
 // Auth endpoints
 export const authAPI = {
-  register: (data) => apiClient.post('/auth/register', data),
-  login: (data) => apiClient.post('/auth/login', data),
-  logout: () => apiClient.post('/auth/logout'),
-  getCurrentUser: () => apiClient.get('/auth/me'),
-  updateProfile: (data) => apiClient.put('/auth/profile', data),
+  register: (data) => apiClient.post('/api/auth/register', data),
+  login: (data) => apiClient.post('/api/auth/login', data),
+  logout: () => apiClient.post('/api/auth/logout'),
+  getCurrentUser: () => apiClient.get('/api/auth/me'),
+  updateProfile: (data) => apiClient.put('/api/auth/profile', data),
 };
 
 // Product endpoints
