@@ -29,27 +29,27 @@ export const authAPI = {
 
 // Product endpoints
 export const productAPI = {
-  getAllProducts: (params) => apiClient.get('/products', { params }),
-  getProductById: (id) => apiClient.get(`/products/${id}`),
-  searchProducts: (query) => apiClient.get('/products/search', { params: { q: query } }),
-  getCategories: () => apiClient.get('/products/categories'),
-  addReview: (productId, data) => apiClient.post(`/products/${productId}/reviews`, data),
+  getAllProducts: (params) => apiClient.get('/api/products', { params }),
+  getProductById: (id) => apiClient.get(`/api/products/${id}`),
+  searchProducts: (query) => apiClient.get('/api/products/search', { params: { q: query } }),
+  getCategories: () => apiClient.get('/api/products/categories'),
+  addReview: (productId, data) => apiClient.post(`/api/products/${productId}/reviews`, data),
 };
 
 // Cart endpoints
 export const cartAPI = {
-  getCart: () => apiClient.get('/cart'),
-  addToCart: (data) => apiClient.post('/cart/add', data),
-  updateCartItem: (id, data) => apiClient.put(`/cart/update/${id}`, data),
-  removeFromCart: (id) => apiClient.delete(`/cart/remove/${id}`),
-  clearCart: () => apiClient.post('/cart/clear'),
+  getCart: () => apiClient.get('/api/cart'),
+  addToCart: (data) => apiClient.post('/api/cart/add', data),
+  updateCartItem: (id, data) => apiClient.put(`/api/cart/update/${id}`, data),
+  removeFromCart: (id) => apiClient.delete(`/api/cart/remove/${id}`),
+  clearCart: () => apiClient.post('/api/cart/clear'),
 };
 
 // Order endpoints
 export const orderAPI = {
-  getUserOrders: () => apiClient.get('/orders'),
-  getOrderById: (id) => apiClient.get(`/orders/${id}`),
-  createOrder: (data) => apiClient.post('/orders', data),
-  updateOrderStatus: (id, data) => apiClient.put(`/orders/${id}/status`, data),
-  cancelOrder: (id) => apiClient.post(`/orders/${id}/cancel`),
+  getUserOrders: () => apiClient.get('/api/orders'),
+  getOrderById: (id) => apiClient.get(`/api/orders/${id}`),
+  createOrder: (data) => apiClient.post('/api/orders', data),
+  updateOrderStatus: (id, data) => apiClient.put(`/api/orders/${id}/status`, data),
+  cancelOrder: (id) => apiClient.post(`/api/orders/${id}/cancel`),
 };
