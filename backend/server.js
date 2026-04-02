@@ -10,12 +10,29 @@ dotenv.config();
 const app = express();
 
 // Middleware
+
+const allowedOrigins = [
+  process.env.FRONTEND_URL,
+  process.env.LOVABLE_FRONTEND_URL,
+  'http://localhost:5173'
+].filter(Boolean); // removes undefined values
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: function (origin, callback) {
+    // allow non-browser requests (e.g. Postman)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+
+    return callback(new Error(`CORS blocked for origin: ${origin}`));
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
