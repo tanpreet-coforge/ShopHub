@@ -14,6 +14,9 @@ const orderSchema = new mongoose.Schema(
           ref: 'Product',
         },
         productName: String,
+        productSku: String,
+        productBrand: String,
+        productCategory: String,
         quantity: Number,
         price: Number,
         image: String,
@@ -23,10 +26,37 @@ const orderSchema = new mongoose.Schema(
         },
       },
     ],
+    subtotal: {
+      type: Number,
+      default: 0,
+    },
     totalPrice: {
       type: Number,
       required: true,
     },
+    shippingCost: {
+      type: Number,
+      default: 0,
+    },
+    tax: {
+      type: Number,
+      default: 0,
+    },
+    discount: {
+      type: Number,
+      default: 0,
+    },
+    couponCode: String,
+    currency: {
+      type: String,
+      default: 'USD',
+    },
+    orderAffiliation: String,
+    orderOrigin: String,
+    paymentProvider: String,
+    shippingMethod: String,
+    shippingZone: String,
+    deliveryType: String,
     shippingAddress: {
       firstName: String,
       lastName: String,
