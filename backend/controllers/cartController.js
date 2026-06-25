@@ -27,7 +27,7 @@ exports.getCart = async (req, res) => {
 // Add to cart
 exports.addToCart = async (req, res) => {
   try {
-    const { productId, quantity } = req.body;
+    const { productId, quantity, selectedVariant = {} } = req.body;
 
     const product = await Product.findById(productId);
     if (!product) {
@@ -47,8 +47,11 @@ exports.addToCart = async (req, res) => {
       });
     }
 
+    const selectedVariantString = JSON.stringify(selectedVariant || {});
     const existingItem = cart.items.find(
-      (item) => item.productId.toString() === productId
+      (item) =>
+        item.productId.toString() === productId &&
+        JSON.stringify(item.selectedVariant || {}) === selectedVariantString
     );
 
     if (existingItem) {
@@ -58,6 +61,7 @@ exports.addToCart = async (req, res) => {
         productId,
         quantity,
         price: product.price,
+        selectedVariant,
       });
     }
 
