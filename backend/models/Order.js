@@ -17,6 +17,10 @@ const orderSchema = new mongoose.Schema(
         quantity: Number,
         price: Number,
         image: String,
+        selectedVariant: {
+          type: Object,
+          default: {},
+        },
       },
     ],
     totalPrice: {
